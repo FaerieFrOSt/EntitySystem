@@ -32,9 +32,9 @@ namespace ES
     class   EntityManager
     {
         public:
-            unsigned int    Create_entity(unsigned int mask)
+            unsigned int    Create_entity(void)
             {
-                entity_mask.push_back(mask);
+                entity_mask.push_back(Component::NONE);
                 return entity_mask.size() - 1;
             }
             
@@ -53,6 +53,18 @@ namespace ES
                 }
             }
             
+            void    Add_Component(unsigned int entity, Component mask, void *data)
+            {
+                if (entity >= entity_mask.size())
+                    return ;
+                entity_mask[entity] |= mask;
+                switch (mask)
+                {
+                    case    Component::DISPLACEMENT:
+                        displacement_data
+                }
+            }
+            
         protected:
             std::vector<unsigned int>   entity_mask;
             std::vector<Displacement>   displacement_data;
@@ -64,8 +76,11 @@ int main()
     std::cout<<"Adding entity"<<std::endl;
     ES::EntityManager E;
     std::cout<<"Created manager"<<std::endl;
-    auto entity = E.Create_entity(ES::Component::DISPLACEMENT);
+    auto entity = E.Create_entity();
+    std::cout<<"Done"<<std::endl<<"Adding displacement component"<<std::endl;
+    
     std::cout<<"Done"<<std::endl<<"Removing element"<<std::endl;
+    return 0;
     E.Destroy_entity(entity);
     std::cout<<"Done"<<std::endl;
     return 0;
