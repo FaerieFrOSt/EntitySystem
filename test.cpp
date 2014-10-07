@@ -64,10 +64,8 @@ int main()
     std::cout<<"Adding entity"<<std::endl;
     ES::EntityManager E;
     std::cout<<"Created manager"<<std::endl;
-    return 0;
     auto entity = E.Create_entity(ES::Component::DISPLACEMENT);
     std::cout<<"Done"<<std::endl<<"Removing element"<<std::endl;
-    return 0;
     E.Destroy_entity(entity);
     std::cout<<"Done"<<std::endl;
     return 0;
